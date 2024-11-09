@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무작위 mp3 재생기</title>
+</head>
+<body>
+    <div class="container">
+        <!-- 이미지를 클릭할 때 mp3 파일을 재생할 수 있도록 설정 -->
+        <img id="clickableImage" src="스크린샷 2024-11-10 004059.png" alt="클릭해서 무작위 mp3 재생" style="width:300px; cursor:pointer;">
+        <audio id="audioPlayer" controls></audio> <!-- 오디오 재생을 위한 태그 -->
+    </div>
+    <script>
+        // mp3 파일 목록 (프로젝트 폴더에 저장된 mp3 파일 이름)
+        const mp3Files = [
+            '1000100_01_kr.mp3',
+            '1000100_03_kr.mp3',
+            '1000100_04_kr.mp3',
+            '1000100_05_kr.mp3',
+            '1000100_06_kr.mp3',
+            '1000101_01_kr.mp3',
+            '1000101_02_kr.mp3',
+            '1000101_03_kr.mp3',
+            '1000101_04_kr.mp3',
+            '1000101_05_kr.mp3',
+            '1000101_06_kr.mp3'
+        ];
+
+        const clickableImage = document.getElementById('clickableImage');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        clickableImage.addEventListener('click', () => {
+            // 무작위로 mp3 파일 선택
+            const randomIndex = Math.floor(Math.random() * mp3Files.length);
+            const selectedMp3 = mp3Files[randomIndex];
+
+            // 오디오 재생 설정
+            audioPlayer.src = selectedMp3;
+            audioPlayer.play().catch(error => {
+                console.error('오디오 재생에 실패했습니다:', error);
+            });
+        });
+    </script>
+</body>
+</html>
